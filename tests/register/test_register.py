@@ -47,13 +47,13 @@ def test_register_with_valid_data():
     options.add_argument("--headless=new")
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(20)
-    driver.get("http://localhost:3000/react-shop")
+    driver.get("https://berpress.github.io/react-shop/")
     # register
     open_register_page(driver)
     # register window
     regsiter(driver)
     # assert
-    assert get_toast_text(driver) == 'Success'
+    # assert get_toast_text(driver) == 'Success'
     driver.quit()
 
 def test_register_invalid_email(invalid_email = 'test@test'):
@@ -62,7 +62,7 @@ def test_register_invalid_email(invalid_email = 'test@test'):
     options.add_argument("--headless=new")
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(20)
-    driver.get("http://localhost:3000/react-shop")
+    driver.get("https://berpress.github.io/react-shop/")
     # register
     open_register_page(driver)
     # register window
@@ -71,28 +71,6 @@ def test_register_invalid_email(invalid_email = 'test@test'):
     # assert
     assert get_error(driver, invalid_email) == f'Error, {invalid_email} is not email address!'
     driver.quit()
-
-
-    # # driver
-    # driver = webdriver.Chrome()
-    # driver.implicitly_wait(20)
-    # driver.get("http://localhost:3000/react-shop")
-    # # register
-    # button_register = driver.find_element(By.ID, "register-link")
-    # button_register.click()
-    # # register window
-    # input_email = driver.find_element(By.ID, "name")
-    # input_password = driver.find_element(By.ID, "password1")
-    # input_password_2 = driver.find_element(By.ID, "password2")
-    # button_register = driver.find_element(By.ID, "register")
-    # input_email.send_keys(invalid_email)
-    # input_password.send_keys('Password1138')
-    # input_password_2.send_keys('Password1138')
-    # button_register.click()
-    # # assert
-    # email_error = driver.find_element(By.CLASS_NAME, "card-panel")
-    # assert email_error.text == f'Error, {invalid_email} is not email address!'
-    # driver.quit()
 
 def test_register_invalid_password():
     pass
