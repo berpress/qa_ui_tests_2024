@@ -2,6 +2,8 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from faker import Faker
+from selenium.webdriver.chrome.options import Options
+
 
 
 URL = "http://localhost:3000/react-shop"
@@ -41,7 +43,9 @@ def get_error(driver, invalid_email):
 @pytest.mark.xfail
 def test_register_with_valid_data():
     # driver
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(20)
     driver.get("http://localhost:3000/react-shop")
     # register
@@ -54,7 +58,9 @@ def test_register_with_valid_data():
 
 def test_register_invalid_email(invalid_email = 'test@test'):
     # driver
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(20)
     driver.get("http://localhost:3000/react-shop")
     # register
